@@ -1,4 +1,6 @@
 # Best-cook Project
+# Note
+This was set up with expo in mind. If you guys are not comfortable with expo, we can make it basic and switch to something else.
 
 ## Overview
 
