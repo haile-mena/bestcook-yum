@@ -4,7 +4,7 @@ This was set up with expo in mind. If you guys are not comfortable with expo, we
 
 ## Overview
 
-This project is an Expo React Native application for Best-cook-yum(will e changed). It includes a login screen, signup screen, and welcome screen.
+This project is an Expo React Native application for Best-cook-yum(will be changed). It includes a login screen, signup screen, and welcome screen.
 
 The folder ~ **`Best-cook`** has all the referenced and neccessary file. modify according to task.
 
