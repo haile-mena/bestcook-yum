@@ -21,6 +21,7 @@ function SignUp() {
   const [values, setValues] = useState({ email: "", password: "" });
 
   const onSubmit = async (values: FormValues) => {
+    //setError('email', null, {shouldFocus: true})
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
@@ -40,19 +41,36 @@ function SignUp() {
         control={control}
         name="email"
         rules={{ required: "Please enter your school email adress" }}
-        render={(field: {onBlur, onChange, value} ) = (
-          <TextInput onBlur = {onBlur} onChangeText = {onChange} placeholder = "Enter your School email." value = {value} />
+        render={({ field: { onBlur, onChange, value } }) => (
+          <TextInput
+            onBlur={onBlur}
+            onChangeText={onChange}
+            placeholder="Enter your School email."
+            value={value}
+          />
         )}
       />
+      {formState.errors.email && <Text>{formState.errors.email.message}</Text>}
 
       <Text> Password</Text>
-      <TextInput
-        onChangeText={(text) => setValues({ ...values, password: text })}
-        placeholder="Enter your password "
-        value={values.password}
-      ></TextInput>
+      <Controller
+        control={control}
+        name="password"
+        rules={{ required: true, minLength: 6 }}
+        render={({ field: { onBlur, onChange, value } }) => (
+          <TextInput
+            onBlur={onBlur}
+            onChangeText={onChange}
+            placeholder="Enter your password"
+            value={value}
+          />
+        )}
+      />
+      {formState.errors.password && (
+        <Text>{formState.errors.password.message}</Text>
+      )}
 
-      <Button title="sign-up" onPress={onSubmit} />
+      <Button title="sign-up" onPress={handleSubmit(onSubmit)} />
     </View>
   );
 }

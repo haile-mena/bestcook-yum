@@ -1,37 +1,19 @@
-// Welcome.tsx
-
 import React from "react";
-import { View, Button, StyleSheet, Text } from "react-native";
+import { Button, Text, SafeAreaView } from "react-native";
+import { NavigationProp, ParamListBase } from "@react-navigation/native";
 
-type Props = {
-  navigation: any; // Type for navigation prop
+type WelcomeScreenProps = {
+  navigation: any;
 };
 
-const WelcomeScreen: React.FC<Props> = ({ navigation }) => {
-  const goToLogin = () => {
-    navigation.navigate("Login"); // Navigate to Login screen
-  };
-
-  const goToSignUp = () => {
-    navigation.navigate("Signup"); // Navigate to SignUp screen
-  };
-
+export default function WelcomeScreen({ navigation }: WelcomeScreenProps) {
   return (
-    <View style={styles.container}>
-      <Text>Welcome</Text>
-      <Button title="Login" onPress={goToLogin} />
-      <Button title="Sign Up" onPress={goToSignUp} />
-    </View>
+    <SafeAreaView>
+      <Text>YUM!</Text>
+      <Button title="Sign Up" onPress={() => navigation.navigate("SignUp")} />
+      <Button title="Log In" onPress={() => navigation.navigate("Login")} />
+    </SafeAreaView>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
-
-export default WelcomeScreen;
-//modif, this is just for setup, modify to liking.
+//This is justa areference..
