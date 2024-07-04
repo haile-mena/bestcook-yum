@@ -3,7 +3,8 @@ import { Button, Text, TextInput, View } from "react-native";
 import { AuthError, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../support/firebase";
 import { Controller, useForm } from "react-hook-form";
-
+import { Link } from "expo-router";
+import Login from "./Login";
 interface FormValues {
   email: string;
   password: string;
@@ -71,6 +72,8 @@ function SignUp() {
       )}
 
       <Button title="sign-up" onPress={handleSubmit(onSubmit)} />
+
+      <Text>Already have an account? Login </Text>
     </View>
   );
 }

@@ -1,18 +1,15 @@
 import React from "react";
 import { Button, Text, SafeAreaView } from "react-native";
-import { NavigationProp, ParamListBase } from "@react-navigation/native";
 import Login from "./Login";
 import SignUp from "./SignUp";
-type WelcomeScreenProps = {
-  navigation: any;
-};
+import { router } from "expo-router";
 
-export default function WelcomeScreen({ navigation }: WelcomeScreenProps) {
+export default function WelcomeScreen() {
   return (
     <SafeAreaView>
       <Text>YUM!</Text>
-      <Button title="Sign Up" onPress={() => navigation.navigate(SignUp)} />
-      <Button title="Log In" onPress={() => navigation.navigate(Login)} />
+      <Button title="Sign Up" onPress={() => router.navigate("signUp")} />
+      <Button title="Log In" onPress={() => router.navigate("Login")} />
     </SafeAreaView>
   );
 }
