@@ -4,10 +4,10 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Welcome from "./screens/Welcome"; // Example component for welcome screen
-import Login from "./screens/login"; // Example component for login screen
-import Signup from "./screens/signup"; // Example component for signup screen
-import Home from "./screens/Home"; // Example component for home screen
+import Welcome from "./app/screens/WelcomeScreen"; // Example component for welcome screen
+import Login from "./app/screens/Login"; // Example component for login screen
+import Signup from "./app/screens/SignUp"; // Example component for signup screen
+import Home from "./app/screens/Home"; // Example component for home screen
 
 const Stack = createStackNavigator();
 

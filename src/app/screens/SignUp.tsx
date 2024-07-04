@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Text, TextInput, View } from "react-native";
 import { AuthError, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../support/firebase";
+import { auth } from "../../support/firebase";
 import { Controller, useForm } from "react-hook-form";
 
 interface FormValues {
