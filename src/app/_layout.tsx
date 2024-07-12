@@ -9,7 +9,7 @@ import Login from "./screens/Login";
 import Home from "./screens/Home";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WelcomeScreen from "./screens/WelcomeScreen";
-
+import App from ".";
 // Prevent the splash screen from auto-hiding before asset loading is complete
 SplashScreen.preventAutoHideAsync();
 
@@ -46,7 +46,7 @@ export default function RootLayout() {
       <Stack.Navigator screenOptions={{ headerShown: true }}>
         {user ? (
           <>
-            <Stack.Screen name="svreens/Home" component={Home} />
+            <Stack.Screen name="." component={App} />
           </>
         ) : (
           <>

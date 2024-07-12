@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Text>Welcome Team</Text>
+      <Text>Welcome Team, The home page goes here with all links and logo</Text>
     </View>
   );
 };

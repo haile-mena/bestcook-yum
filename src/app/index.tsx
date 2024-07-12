@@ -7,9 +7,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Home" }} />
-      <ScrollView flex={1}>
-        <Text> Welcome</Text>
-      </ScrollView>
+      <Text> Welcome</Text>
     </View>
   );
 };
