@@ -8,8 +8,8 @@ export default function WelcomeScreen() {
   return (
     <SafeAreaView>
       <Text>YUM!</Text>
-      <Button title="Sign Up" onPress={() => router.navigate("signUp")} />
-      <Button title="Log In" onPress={() => router.navigate("Login")} />
+      <Button title="Sign Up" onPress={() => router.navigate("./SignUp")} />
+      <Button title="Log In" onPress={() => router.navigate("./Login")} />
     </SafeAreaView>
   );
 }

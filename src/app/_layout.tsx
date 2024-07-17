@@ -4,12 +4,11 @@ import { useFonts } from "expo-font";
 import { useColorScheme, Text, Button, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { auth } from "../support/firebase";
-import SignUp from "./screens/SignUp";
-import Login from "./screens/Login";
-import Home from "./screens/Home";
+import SignUp from "./SignUp";
+import Login from "./Login";
+import Home from "./Home";
 import { SafeAreaView } from "react-native-safe-area-context";
-import WelcomeScreen from "./screens/WelcomeScreen";
-import App from ".";
+import WelcomeScreen from "./WelcomeScreen";
 // Prevent the splash screen from auto-hiding before asset loading is complete
 SplashScreen.preventAutoHideAsync();
 
@@ -46,16 +45,13 @@ export default function RootLayout() {
       <Stack.Navigator screenOptions={{ headerShown: true }}>
         {user ? (
           <>
-            <Stack.Screen name="screens/Home" component={Home} />
+            <Stack.Screen name="Home" component={Home} />
           </>
         ) : (
           <>
-            <Stack.Screen
-              name="screens/WelcomeScreen"
-              component={WelcomeScreen}
-            />
-            <Stack.Screen name="screens/SignUp" component={SignUp} />
-            <Stack.Screen name="screens/Login" component={Login} />
+            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="Login" component={Login} />
           </>
         )}
       </Stack.Navigator>
