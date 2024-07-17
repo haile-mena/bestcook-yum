@@ -9,7 +9,7 @@ async function seedDatabase() {
     name: "Christabel",
     email: "Christabel@example.com",
     password: "christabel", //Can hash it
-    accountType: "student",
+    //accountType: "student",
     swipes: 10,
     createdAt: new Date(),
   });

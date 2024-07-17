@@ -12,7 +12,7 @@
     "**/*.tsx",
     "expo-env.d.ts",
     ".expo/types/**/*.ts",
-    "src/scripts/seed.ts",
-    "src/scripts/reset.ts"
+    "src/scripts/seed.tsx",
+    "src/scripts/reset.tsx"
   ]
 }
