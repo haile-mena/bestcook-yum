@@ -46,7 +46,7 @@ export default function RootLayout() {
       <Stack.Navigator screenOptions={{ headerShown: true }}>
         {user ? (
           <>
-            <Stack.Screen name="." component={App} />
+            <Stack.Screen name="screens/Home" component={Home} />
           </>
         ) : (
           <>

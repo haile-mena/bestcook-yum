@@ -7,7 +7,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: "Home" }} />
-      <Text> Welcome</Text>
+      <Text> Welcome peeps</Text>
     </View>
   );
 };

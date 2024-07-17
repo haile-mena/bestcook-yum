@@ -7,7 +7,7 @@ async function seedDatabase() {
   const usersRef = collection(db, "Users");
   const userDoc = await addDoc(usersRef, {
     name: "Christabel",
-    email: "johndoe@example.com",
+    email: "Christabel@example.com",
     password: "christabel", //Can hash it
     accountType: "student",
     swipes: 10,
