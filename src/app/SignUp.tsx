@@ -4,7 +4,9 @@ import { AuthError, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../support/firebase";
 import { Controller, useForm } from "react-hook-form";
 import { Link, router } from "expo-router";
-import Login from "./Login";
+import { db } from "../support/firebase";
+import { addDoc, collection } from "firebase/firestore";
+
 interface FormValues {
   email: string;
   password: string;
@@ -16,32 +18,51 @@ const defaultValues: FormValues = {
 };
 
 function SignUp() {
+  const [username, setUsername] = useState("");
+
   const { control, formState, handleSubmit, setError } = useForm<FormValues>({
     defaultValues,
   });
-  const [values, setValues] = useState({ email: "", password: "" });
 
   const onSubmit = async (values: FormValues) => {
-    //setError('email', null, {shouldFocus: true})
     try {
-      const user = await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         values.email,
         values.password
       );
+      const user = userCredential.user;
+      if (user) {
+        await addDoc(collection(db, "users"), {
+          uid: user.uid,
+          email: user.email,
+          username: username,
+          swipes: 0,
+          createdAt: new Date(),
+        });
+      }
+      // Navigate to another screen or show a success message
     } catch (e) {
       const error = e as AuthError;
       console.log(e);
+      // Handle error, e.g., setError for the form
     }
   };
-  console.log(formState.errors);
+
   return (
     <View>
+      <Text>Name</Text>
+      <TextInput
+        placeholder="Enter your name"
+        value={username}
+        onChangeText={setUsername}
+      />
+
       <Text> Email</Text>
       <Controller
         control={control}
         name="email"
-        rules={{ required: "Please enter your school email adress" }}
+        rules={{ required: "Please enter your school email address" }}
         render={({ field: { onBlur, onChange, value } }) => (
           <TextInput
             onBlur={onBlur}

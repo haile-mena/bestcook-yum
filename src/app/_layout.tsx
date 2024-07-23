@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { auth } from "../support/firebase";
 import SignUp from "./SignUp";
 import Login from "./Login";
+import BeginScreen from "./BeginScreen";
 import Home from "./Home";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WelcomeScreen from "./WelcomeScreen";
@@ -49,6 +50,7 @@ export default function RootLayout() {
           </>
         ) : (
           <>
+            <Stack.Screen name="BeginScreen" component={BeginScreen} />
             <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="Login" component={Login} />
