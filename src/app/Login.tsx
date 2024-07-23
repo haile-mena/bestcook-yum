@@ -53,6 +53,8 @@ function Login() {
 
   return (
     <View>
+      <Text style={{ fontWeight: "bold" }}>YUM!</Text>
+
       <Text>Email</Text>
       <Controller
         control={control}

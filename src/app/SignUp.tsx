@@ -51,6 +51,7 @@ function SignUp() {
 
   return (
     <View>
+      <Text style={{ fontWeight: "bold" }}>YUM!</Text>
       <Text>Name</Text>
       <TextInput
         placeholder="Enter your name"

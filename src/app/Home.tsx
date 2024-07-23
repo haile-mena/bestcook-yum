@@ -38,9 +38,9 @@ function Home() {
   return (
     <View>
       <Text>
-        Welcome , <Text>{username}</Text>
+        Hello , <Text>{username}</Text>
       </Text>
-      <Text>insights</Text>
+      <Text>We are here to make you eat without the effort</Text>
       <Text>Here are the promotions available</Text>
     </View>
   );
