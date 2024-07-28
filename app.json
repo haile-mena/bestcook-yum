@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Yum",
-    "slug": "Yum",
+    "name": "yumly",
+    "slug": "yumly",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#248232"
+      "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true

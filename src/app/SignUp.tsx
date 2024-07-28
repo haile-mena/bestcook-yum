@@ -6,7 +6,6 @@ import { Controller, useForm } from "react-hook-form";
 import { Link, router } from "expo-router";
 import { db } from "../support/firebase";
 import { addDoc, collection } from "firebase/firestore";
-
 interface FormValues {
   email: string;
   password: string;
@@ -18,8 +17,9 @@ const defaultValues: FormValues = {
 };
 
 function SignUp() {
-  const [username, setUsername] = useState("");
-
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [university, setUniversiry] = useState("");
   const { control, formState, handleSubmit, setError } = useForm<FormValues>({
     defaultValues,
   });
@@ -33,13 +33,16 @@ function SignUp() {
       );
       const user = userCredential.user;
       if (user) {
-        await addDoc(collection(db, "users"), {
-          uid: user.uid,
-          email: user.email,
-          username: username,
-          swipes: 0,
-          createdAt: new Date(),
-        });
+        console.log(user.uid),
+          await addDoc(collection(db, "users"), {
+            uid: user.uid,
+            email: user.email,
+            firstName: firstname,
+            lastName: lastname,
+            University: university,
+            swipes: 0,
+            createdAt: new Date(),
+          });
       }
       // Navigate to another screen or show a success message
     } catch (e) {
@@ -51,12 +54,25 @@ function SignUp() {
 
   return (
     <View>
-      <Text style={{ fontWeight: "bold" }}>YUM!</Text>
-      <Text>Name</Text>
+      <Text style={{ fontWeight: "bold" }}>Hey there!</Text>
+      <Text>Create an account</Text>
+      <Text>First name</Text>
       <TextInput
-        placeholder="Enter your name"
-        value={username}
-        onChangeText={setUsername}
+        placeholder="First name"
+        value={firstname}
+        onChangeText={setFirstname}
+      />
+      <Text>Last name</Text>
+      <TextInput
+        placeholder="Last name"
+        value={lastname}
+        onChangeText={setLastname}
+      />
+      <Text>University</Text>
+      <TextInput
+        placeholder="University"
+        value={university}
+        onChangeText={setUniversiry}
       />
 
       <Text> Email</Text>
@@ -93,7 +109,7 @@ function SignUp() {
         <Text>{formState.errors.password.message}</Text>
       )}
 
-      <Button title="sign-up" onPress={handleSubmit(onSubmit)} />
+      <Button title="Register" onPress={handleSubmit(onSubmit)} />
 
       <Text>
         Already have an account?

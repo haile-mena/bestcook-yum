@@ -6,8 +6,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { auth } from "../support/firebase";
 import SignUp from "./SignUp";
 import Login from "./Login";
+import SuccessScreen from "./SuccessScreen";
 import BeginScreen from "./BeginScreen";
 import Home from "./Home";
+import Allergies from "./Allergies";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WelcomeScreen from "./WelcomeScreen";
 // Prevent the splash screen from auto-hiding before asset loading is complete
@@ -34,7 +36,6 @@ export default function RootLayout() {
     });
     return unsubscribe;
   }, []);
-
   if (!loaded) {
     return null;
   }
@@ -46,6 +47,8 @@ export default function RootLayout() {
       <Stack.Navigator screenOptions={{ headerShown: true }}>
         {user ? (
           <>
+            <Stack.Screen name="Allergies" component={Allergies} />
+            <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
             <Stack.Screen name="Home" component={Home} />
           </>
         ) : (

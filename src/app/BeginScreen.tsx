@@ -4,10 +4,11 @@ import { router } from "expo-router";
 export default function BeginScreen() {
   return (
     <SafeAreaView>
-      <Text>Your feeding Companion for your better and healthy eating.</Text>
+      <Text>yumly</Text>
+      <Text>Eat Smart, study hard</Text>
       <Image />
       <Button
-        title=" Let's Start"
+        title=" Get Started"
         onPress={() => router.navigate("./WelcomeScreen")}
       />
     </SafeAreaView>

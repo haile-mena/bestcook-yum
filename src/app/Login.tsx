@@ -17,7 +17,7 @@ const defaultValues: FormValues = {
 };
 
 function Login() {
-  const [username, setUsername] = useState<string | null>(null);
+  const [firstName, setFirstname] = useState<string | null>(null);
 
   const { control, formState, handleSubmit, setError } = useForm<FormValues>({
     defaultValues,
@@ -36,9 +36,9 @@ function Login() {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
           const userData = userDoc.data();
-          setUsername(userData?.username || "User");
+          setFirstname(userData?.firstName || "User");
           // Navigate to home page or display the username
-          console.log("Username: ", userData?.username);
+          console.log("Firstname: ", userData?.firstName);
           router.push("./Home");
         } else {
           console.log("No such document!");
@@ -53,7 +53,7 @@ function Login() {
 
   return (
     <View>
-      <Text style={{ fontWeight: "bold" }}>YUM!</Text>
+      <Text style={{ fontWeight: "bold" }}>Hey there, Welcome back</Text>
 
       <Text>Email</Text>
       <Controller
@@ -94,7 +94,7 @@ function Login() {
 
       <Text>
         Don't have an account?
-        <Text onPress={() => router.navigate("./SignUp")}>Sign Up</Text>
+        <Text onPress={() => router.navigate("./SignUp")}>Register</Text>
       </Text>
     </View>
   );

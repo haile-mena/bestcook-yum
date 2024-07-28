@@ -5,19 +5,21 @@ import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "expo-router";
 
 function Home() {
-  const [username, setUsername] = useState<string | null>(null);
+  const [firstName, setFirstname] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     const fetchUserData = async () => {
       if (auth.currentUser) {
+        console.log("there is a current user");
         const userId = auth.currentUser.uid;
+        console.log("User-id = ", userId);
         const userDoc = doc(db, "users", userId);
         const docSnap = await getDoc(userDoc);
         if (docSnap.exists()) {
           const userData = docSnap.data();
-          setUsername(userData.username || "User");
+          setFirstname(userData.firstName || "User");
         } else {
           console.log("No such document!");
         }
@@ -38,7 +40,7 @@ function Home() {
   return (
     <View>
       <Text>
-        Hello , <Text>{username}</Text>
+        Hello , <Text>{firstName}</Text>
       </Text>
       <Text>We are here to make you eat without the effort</Text>
       <Text>Here are the promotions available</Text>
