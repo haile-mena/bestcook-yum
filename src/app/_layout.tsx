@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
-import { useColorScheme, Text, Button, View } from "react-native";
+import { useColorScheme } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { auth } from "../support/firebase";
+import { auth, db } from "../support/firebase";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import SuccessScreen from "./SuccessScreen";
@@ -12,6 +12,7 @@ import Home from "./Home";
 import Allergies from "./Allergies";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WelcomeScreen from "./WelcomeScreen";
+import { doc, getDoc } from "firebase/firestore";
 // Prevent the splash screen from auto-hiding before asset loading is complete
 SplashScreen.preventAutoHideAsync();
 
@@ -23,6 +24,7 @@ export default function RootLayout() {
     SpaceMono: require("@/assets/fonts/SpaceMono-Regular.ttf"),
   });
   const [user, setUser] = useState(auth.currentUser);
+  const [isFirstTime, setIsFirstTime] = useState(false);
 
   useEffect(() => {
     if (loaded) {
@@ -33,9 +35,26 @@ export default function RootLayout() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
+      if (user) {
+        // Check if it's the user's first time
+        checkIfFirstTime(user.uid);
+      }
     });
     return unsubscribe;
   }, []);
+
+  const checkIfFirstTime = async (uid: string) => {
+    // Here you would typically query your database to check if the user has completed the Allergies step
+    // For example, you might have a field in your users collection that tracks this
+    const userDoc = await getDoc(doc(db, "users", uid));
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      setIsFirstTime(!userData.allergiesCompleted);
+    } else {
+      setIsFirstTime(true); // Default to first time if no document found
+    }
+  };
+
   if (!loaded) {
     return null;
   }
@@ -47,9 +66,15 @@ export default function RootLayout() {
       <Stack.Navigator screenOptions={{ headerShown: true }}>
         {user ? (
           <>
-            <Stack.Screen name="Allergies" component={Allergies} />
-            <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
-            <Stack.Screen name="Home" component={Home} />
+            {isFirstTime ? (
+              <>
+                <Stack.Screen name="Allergies" component={Allergies} />
+                <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
+                <Stack.Screen name="Home" component={Home} />
+              </>
+            ) : (
+              <Stack.Screen name="Home" component={Home} />
+            )}
           </>
         ) : (
           <>

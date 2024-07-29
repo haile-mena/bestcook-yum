@@ -1,11 +1,11 @@
+import { auth, db } from "../support/firebase";
+import { createUserWithEmailAndPassword, AuthError } from "firebase/auth";
+import { collection, doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
-import { AuthError, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../support/firebase";
-import { Controller, useForm } from "react-hook-form";
-import { Link, router } from "expo-router";
-import { db } from "../support/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { useForm, Controller } from "react-hook-form";
+import { TextInput, Text, Button, View } from "react-native";
+import { router } from "expo-router";
+
 interface FormValues {
   email: string;
   password: string;
@@ -33,18 +33,21 @@ function SignUp() {
       );
       const user = userCredential.user;
       if (user) {
-        console.log(user.uid),
-          await addDoc(collection(db, "users"), {
-            uid: user.uid,
-            email: user.email,
-            firstName: firstname,
-            lastName: lastname,
-            University: university,
-            swipes: 0,
-            createdAt: new Date(),
-          });
+        console.log("A user exists and the uid is : ", user.uid);
+        await setDoc(doc(db, "users", user.uid), {
+          uid: user.uid,
+          email: user.email,
+          firstName: firstname,
+          lastName: lastname,
+          University: university,
+          swipes: 0,
+          allergiesCompleted: false,
+          createdAt: new Date(),
+        });
+        router.navigate("./Allergies");
+      } else {
+        console.log("The user does not exist");
       }
-      // Navigate to another screen or show a success message
     } catch (e) {
       const error = e as AuthError;
       console.log(e);
