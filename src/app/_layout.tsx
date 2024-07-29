@@ -37,7 +37,6 @@ export default function RootLayout() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
       if (user) {
-        // Check if it's the user's first time
         checkIfFirstTime(user.uid);
       }
     });
@@ -45,8 +44,6 @@ export default function RootLayout() {
   }, []);
 
   const checkIfFirstTime = async (uid: string) => {
-    // Here you would typically query your database to check if the user has completed the Allergies step
-    // For example, you might have a field in your users collection that tracks this
     const userDoc = await getDoc(doc(db, "users", uid));
     if (userDoc.exists()) {
       const userData = userDoc.data();
