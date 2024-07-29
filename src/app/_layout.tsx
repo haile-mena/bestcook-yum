@@ -13,6 +13,7 @@ import Allergies from "./Allergies";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WelcomeScreen from "./WelcomeScreen";
 import { doc, getDoc } from "firebase/firestore";
+import Notifications from "./Notifications";
 // Prevent the splash screen from auto-hiding before asset loading is complete
 SplashScreen.preventAutoHideAsync();
 
@@ -71,9 +72,13 @@ export default function RootLayout() {
                 <Stack.Screen name="Allergies" component={Allergies} />
                 <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
                 <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="Notifications" component={Notifications} />
               </>
             ) : (
-              <Stack.Screen name="Home" component={Home} />
+              <>
+                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="Notifications" component={Notifications} />
+              </>
             )}
           </>
         ) : (

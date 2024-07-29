@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Text, LogBox } from "react-native";
+import { View, Text, LogBox, Button } from "react-native";
 import { auth, db } from "../support/firebase";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { useRouter } from "expo-router";
@@ -27,7 +27,7 @@ function Home() {
         setLoading(false);
       } else {
         // If no user is logged in, we can redirect to login page
-        router.push("/Login");
+        router.navigate("/Login");
       }
     };
     fetchUserData();
@@ -36,7 +36,7 @@ function Home() {
   useEffect(() => {
     const getDiscounts = async () => {
       try {
-        const discountRef = collection(db, "discounts");
+        const discountRef = collection(db, "Discounts");
         const docSnapshot = await getDocs(discountRef);
         const Discounts = docSnapshot.docs;
         const discountList = Discounts.map((discount) => discount.data());
@@ -57,10 +57,18 @@ function Home() {
       <Text>
         {message} <Text>{firstName}</Text>
       </Text>
+      {/* The below button is to be converted to the notification icon during front-end,  */}
+      <Button
+        onPress={() => router.navigate("./Notifications")}
+        title="notification"
+      />
       <Text>We do the planning, you do the eating.</Text>
       <Text>Reminder</Text>
       <Text>Message from university</Text>
-      <Text>Latest Deals near you</Text>
+      <Text>
+        Latest Deals near you{"       "}
+        <Text onPress={() => router.navigate("./Discounts")}> see more</Text>
+      </Text>
       <Text>Here are the promotions available</Text>
       {discounts.length > 0 ? (
         discounts.map((discount, index) => (
@@ -68,12 +76,19 @@ function Home() {
             <Text>{discount.title}</Text>
             <Text>{discount.description}</Text>
             <Text>{discount.discount * 100}%</Text>
-            <Text>{discount.expiryDate.toDate().toDateString()}</Text>
+            <Text>
+              {" "}
+              Discount is available until{" "}
+              {discount.expiryDate.toDate().toDateString()}
+            </Text>
           </View>
         ))
       ) : (
-        <Text>No available promotions</Text>
+        <Text>There are no available promotions</Text>
       )}
+
+      <Text>Dinning hall menu</Text>
+      {/* Fetched dinning menu from database will be displayed here */}
     </View>
   );
 }
