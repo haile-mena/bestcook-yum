@@ -40,7 +40,7 @@ function SignUp() {
           firstName: firstname,
           lastName: lastname,
           University: university,
-          swipes: 0,
+          swipes: 30,
           allergiesCompleted: false,
           createdAt: new Date(),
         });

@@ -51,7 +51,7 @@ export default function RootLayout() {
       const userData = userDoc.data();
       setIsFirstTime(!userData.allergiesCompleted);
     } else {
-      setIsFirstTime(true); // Default to first time if no document found
+      setIsFirstTime(true);
     }
   };
 

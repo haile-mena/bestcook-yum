@@ -7,6 +7,7 @@ import { useRouter } from "expo-router";
 function Home() {
   const [firstName, setFirstname] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [firstTime, setIsFirstTime] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function Home() {
         if (docSnap.exists()) {
           const userData = docSnap.data();
           setFirstname(userData.firstName || "User");
+          setIsFirstTime(userData.allergiesCompleted);
         } else {
           console.log("No such document!");
         }
@@ -36,13 +38,15 @@ function Home() {
   if (loading) {
     return <Text>Loading...</Text>;
   }
-
+  let message = "";
+  firstTime ? (message = "Welcome back") : (message = "Welcome");
   return (
     <View>
       <Text>
-        Hello , <Text>{firstName}</Text>
+        {message} <Text>{firstName}</Text>
       </Text>
-      <Text>We are here to make you eat without the effort</Text>
+
+      <Text>Reminder</Text>
       <Text>Here are the promotions available</Text>
     </View>
   );

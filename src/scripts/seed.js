@@ -54,7 +54,7 @@ async function seedDatabase() {
   });
 
   // Best-cook  Promotions/Discounts collection
-  const promotionsRef = collection(db, "Promotions/Discounts");
+  const promotionsRef = collection(db, "Discounts");
   const promotionsDoc = await addDoc(promotionsRef, {
     title: "Summer Sale",
     description: "Up to 50% off on selected items!",
