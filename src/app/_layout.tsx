@@ -14,7 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import WelcomeScreen from "./WelcomeScreen";
 import { doc, getDoc } from "firebase/firestore";
 import Notifications from "./Notifications";
-// Prevent the splash screen from auto-hiding before asset loading is complete
+
 SplashScreen.preventAutoHideAsync();
 
 const Stack = createStackNavigator();
@@ -56,9 +56,6 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-
-  console.log(auth.currentUser);
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Stack.Navigator screenOptions={{ headerShown: true }}>
@@ -66,24 +63,64 @@ export default function RootLayout() {
           <>
             {isFirstTime ? (
               <>
-                <Stack.Screen name="Allergies" component={Allergies} />
-                <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Notifications" component={Notifications} />
+                <Stack.Screen
+                  name="Allergies"
+                  component={Allergies}
+                  options={{ title: "Allergies" }}
+                />
+                <Stack.Screen
+                  name="SuccessScreen"
+                  component={SuccessScreen}
+                  options={{ title: "Success" }}
+                />
+                <Stack.Screen
+                  name="Home"
+                  component={Home}
+                  options={{ title: "Home" }}
+                />
+                <Stack.Screen
+                  name="Notifications"
+                  component={Notifications}
+                  options={{ title: "Notifications" }}
+                />
               </>
             ) : (
               <>
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Notifications" component={Notifications} />
+                <Stack.Screen
+                  name="Home"
+                  component={Home}
+                  options={{ title: "yumly" }}
+                />
+                <Stack.Screen
+                  name="Notifications"
+                  component={Notifications}
+                  options={{ title: "Notifications" }}
+                />
               </>
             )}
           </>
         ) : (
           <>
-            <Stack.Screen name="BeginScreen" component={BeginScreen} />
-            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-            <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen
+              name="BeginScreen"
+              component={BeginScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="WelcomeScreen"
+              component={WelcomeScreen}
+              options={{ title: "Welcome" }}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+              options={{ title: "Sign Up" }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ title: "Login" }}
+            />
           </>
         )}
       </Stack.Navigator>

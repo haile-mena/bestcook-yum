@@ -6,7 +6,7 @@ export default function WelcomeScreen() {
   return (
     <SafeAreaView>
       <Text>Personalized Recipes</Text>
-      <Text>Scan your grociereis and manage your frig=dge effortlessly.</Text>
+      <Text>Scan your grociereis and manage your fridge effortlessly.</Text>
       {/* adjust to look lue=je the rest of the onboarding page */}
       <Button title="Sign Up" onPress={() => router.navigate("./SignUp")} />
       <Button title="Log In" onPress={() => router.navigate("./Login")} />
