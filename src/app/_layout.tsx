@@ -10,6 +10,7 @@ import SuccessScreen from "./SuccessScreen";
 import BeginScreen from "./BeginScreen";
 import Home from "./Home";
 import Allergies from "./Allergies";
+import Menu from "./Menu";
 import { SafeAreaView } from "react-native-safe-area-context";
 import WelcomeScreen from "./WelcomeScreen";
 import { doc, getDoc } from "firebase/firestore";
@@ -83,6 +84,12 @@ export default function RootLayout() {
                   component={Notifications}
                   options={{ title: "Notifications" }}
                 />
+
+                <Stack.Screen
+                  name="Menu"
+                  component={Menu}
+                  options={{ title: "Menu" }}
+                />
               </>
             ) : (
               <>
@@ -95,6 +102,11 @@ export default function RootLayout() {
                   name="Notifications"
                   component={Notifications}
                   options={{ title: "Notifications" }}
+                />
+                <Stack.Screen
+                  name="Menu"
+                  component={Menu}
+                  options={{ title: "Menu" }}
                 />
               </>
             )}

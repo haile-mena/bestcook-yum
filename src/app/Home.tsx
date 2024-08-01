@@ -7,6 +7,7 @@ import { useRouter } from "expo-router";
 function Home() {
   const [firstName, setFirstname] = useState<string | null>(null);
   const [discounts, setDiscounts] = useState<any[]>([]);
+
   const [loading, setLoading] = useState(true);
   const [firstTime, setIsFirstTime] = useState(true);
   const router = useRouter();
@@ -47,6 +48,7 @@ function Home() {
     };
     getDiscounts();
   }, []);
+
   if (loading) {
     return <Text>Loading...</Text>;
   }
@@ -88,6 +90,12 @@ function Home() {
       )}
 
       <Text>Dinning hall menu</Text>
+      {"           "}
+      <Text onPress={() => router.navigate("./menu")}>See mmore</Text>
+      <Text onPress={() => router.navigate("./menu")}>Breakfast</Text>
+      <Text onPress={() => router.navigate("./menu")}>Lunch</Text>
+      <Text onPress={() => router.navigate("./menu")}>Dinner</Text>
+
       {/* Fetched dinning menu from database will be displayed here */}
     </View>
   );
