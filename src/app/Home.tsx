@@ -171,9 +171,9 @@ function Home() {
         <TouchableOpacity onPress={() => router.navigate("./Swipe")}>
           <Image source={require('../../assets/images/Activity.png')} style={[styles.icon, { marginRight: 50 }]} />
         </TouchableOpacity>
-        <View style={styles.circleButton}>
+        <TouchableOpacity onPress={() => router.navigate("./Fridge")} style={styles.circleButton}>
           <Image source={require('../../assets/images/Scan.png')} style={styles.scanIcon} />
-        </View>
+        </TouchableOpacity>
         <Image source={require('../../assets/images/Buy.png')} style={[styles.icon, { marginLeft: 50 }]} />
         <Image source={require('../../assets/images/Profile.png')} style={styles.icon} />
       </View>

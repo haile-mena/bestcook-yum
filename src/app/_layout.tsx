@@ -20,6 +20,7 @@ import About2 from "./About2";
 import About3 from "./About3";
 import About4 from "./About4";
 import Swipe from "./Swipe";
+import Fridge from "./Fridge"; // Import the Fridge component
 
 SplashScreen.preventAutoHideAsync();
 
@@ -64,7 +65,7 @@ export default function RootLayout() {
   }
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Stack.Navigator screenOptions={{ headerShown: true }}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         {user ? (
           <>
             {isFirstTime ? (
@@ -119,6 +120,11 @@ export default function RootLayout() {
                   component={Swipe}
                   options={{ title: "Swipe" }}
                 />
+                <Stack.Screen
+                  name="Fridge"
+                  component={Fridge}
+                  options={{ title: "Fridge" }} // Add Fridge screen here
+                />
               </>
             ) : (
               <>
@@ -141,6 +147,11 @@ export default function RootLayout() {
                   name="Swipe"
                   component={Swipe}
                   options={{ title: "Swipe" }}
+                />
+                <Stack.Screen
+                  name="Fridge"
+                  component={Fridge}
+                  options={{ title: "Fridge" }} // Add Fridge screen here
                 />
               </>
             )}
