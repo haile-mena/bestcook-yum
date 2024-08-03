@@ -17,13 +17,13 @@ const Swipe = () => {
         </View>
         <View style={styles.card}>
           <Image source={require('../../assets/images/mealswipeblock.png')} style={styles.cardImage} />
-          <Text style={[styles.cardText, styles.mealSwipesText]}>Meal Swipes Remaining</Text>
-          <Text style={[styles.cardValue, styles.mealSwipesValue]}>98 Swipes</Text>
+          <Text style={[styles.cardText]}>Meal Swipes Remaining</Text>
+          <Text style={[styles.cardValue]}>98 Swipes</Text>
         </View>
         <View style={styles.card}>
           <Image source={require('../../assets/images/bucksblock.png')} style={styles.cardImage} />
-          <Text style={[styles.cardText, styles.campusBucksText]}>Campus Bucks Remaining</Text>
-          <Text style={[styles.cardValue, styles.campusBucksValue]}>$235.00</Text>
+          <Text style={[styles.cardText]}>Campus Bucks Remaining</Text>
+          <Text style={[styles.cardValue]}>$235.00</Text>
         </View>
         <Text style={styles.transactionsTitle}>Transactions</Text>
         <Image source={require('../../assets/images/transactions.png')} style={styles.transactionsImage} />
