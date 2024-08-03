@@ -98,7 +98,7 @@ function Home() {
             <Text style={styles.uniReminderTextHeader}>Message from NYU:</Text>
             <Text style={styles.uniReminderText}>Dining Hall Closures 6/18</Text>
             <TouchableOpacity style={styles.learnMoreButton}>
-              <Svg width="95" height="35" viewBox="0 0 95 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <Svg width="95" height="35" viewBox="0 0 95 35" fill="none" >
                 <Rect width="95" height="35" rx="17.5" fill="url(#paint0_linear_177_1221)"/>
                 <Defs>
                   <LinearGradient id="paint0_linear_177_1221" x1="95" y1="35" x2="-26.9919" y2="9.37755" gradientUnits="userSpaceOnUse">
@@ -165,8 +165,12 @@ function Home() {
         </ScrollView>
       </ScrollView>
       <View style={styles.bottomBar}>
-        <Image source={require('../../assets/images/Home.png')} style={styles.icon} />
-        <Image source={require('../../assets/images/Activity.png')} style={[styles.icon, { marginRight: 50 }]} />
+        <TouchableOpacity onPress={() => router.navigate("./Home")}>
+          <Image source={require('../../assets/images/Home.png')} style={styles.icon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.navigate("./Swipe")}>
+          <Image source={require('../../assets/images/Activity.png')} style={[styles.icon, { marginRight: 50 }]} />
+        </TouchableOpacity>
         <View style={styles.circleButton}>
           <Image source={require('../../assets/images/Scan.png')} style={styles.scanIcon} />
         </View>
@@ -208,10 +212,10 @@ const styles = StyleSheet.create({
   reminderContainer: {
     position: 'relative',
     marginBottom: 10,
-    alignItems: 'flex-start',
+    alignItems: 'flex-start', 
   },
   reminderSvg: {
-    marginLeft: 0,
+    marginLeft: 0, 
   },
   reminderImage: {
     position: 'absolute',
@@ -380,7 +384,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -35, 
     left: width / 2 - 35, 
-    width: 70, 
+    width: 70,
     height: 70, 
     borderRadius: 35, 
     backgroundColor: '#92A3FD',

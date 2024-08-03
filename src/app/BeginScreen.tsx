@@ -30,7 +30,7 @@ export default function BeginScreen() {
       <View style={styles.flexSpacer} />
       {showButton && (
         <Animated.View style={[styles.buttonContainer, { opacity: fadeAnim }]}>
-          <TouchableOpacity onPress={() => router.navigate("./WelcomeScreen")}>
+         <TouchableOpacity onPress={() => router.navigate("./About1")}>
             <LinearGradient
               colors={['#9DCEFF','#92A3FD']}
               start={{ x: 0, y: 0 }}

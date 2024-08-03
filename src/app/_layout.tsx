@@ -15,6 +15,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import WelcomeScreen from "./WelcomeScreen";
 import { doc, getDoc } from "firebase/firestore";
 import Notifications from "./Notifications";
+import About1 from "./About1";
+import About2 from "./About2";
+import About3 from "./About3";
+import About4 from "./About4";
+import Swipe from "./Swipe";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -75,6 +80,26 @@ export default function RootLayout() {
                   options={{ title: "Success" }}
                 />
                 <Stack.Screen
+                  name="About1"
+                  component={About1}
+                  options={{ title: "About 1" }}
+                />
+                <Stack.Screen
+                  name="About2"
+                  component={About2}
+                  options={{ title: "About 2" }}
+                />
+                <Stack.Screen
+                  name="About3"
+                  component={About3}
+                  options={{ title: "About 3" }}
+                />
+                <Stack.Screen
+                  name="About4"
+                  component={About4}
+                  options={{ title: "About 4" }}
+                />
+                <Stack.Screen
                   name="Home"
                   component={Home}
                   options={{ title: "Home" }}
@@ -84,11 +109,15 @@ export default function RootLayout() {
                   component={Notifications}
                   options={{ title: "Notifications" }}
                 />
-
                 <Stack.Screen
                   name="Menu"
                   component={Menu}
                   options={{ title: "Menu" }}
+                />
+                <Stack.Screen
+                  name="Swipe"
+                  component={Swipe}
+                  options={{ title: "Swipe" }}
                 />
               </>
             ) : (
@@ -108,6 +137,11 @@ export default function RootLayout() {
                   component={Menu}
                   options={{ title: "Menu" }}
                 />
+                <Stack.Screen
+                  name="Swipe"
+                  component={Swipe}
+                  options={{ title: "Swipe" }}
+                />
               </>
             )}
           </>
@@ -117,6 +151,26 @@ export default function RootLayout() {
               name="BeginScreen"
               component={BeginScreen}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="About1"
+              component={About1}
+              options={{ title: "About 1" }}
+            />
+            <Stack.Screen
+              name="About2"
+              component={About2}
+              options={{ title: "About 2" }}
+            />
+            <Stack.Screen
+              name="About3"
+              component={About3}
+              options={{ title: "About 3" }}
+            />
+            <Stack.Screen
+              name="About4"
+              component={About4}
+              options={{ title: "About 4" }}
             />
             <Stack.Screen
               name="WelcomeScreen"
