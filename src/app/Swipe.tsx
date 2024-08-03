@@ -101,16 +101,16 @@ const styles = StyleSheet.create({
   },
   card: {
     alignItems: 'center',
-    marginBottom: -20, // Further reduced margin to bring blocks closer together
+    marginBottom: -20, 
   },
   cardImage: {
-    width: width - 10, // Made the image wider
-    height: (width - 10) / 2, // Adjusted height accordingly
+    width: width - 10, 
+    height: (width - 10) / 2, 
     borderRadius: 10,
   },
   cardText: {
     position: 'absolute',
-    top: '15%', // Adjusted position
+    top: '15%',
     left: '10%',
     fontSize: 18,
     fontWeight: 'bold',
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
   cardValue: {
     position: 'absolute',
-    top: '30%', // Adjusted position
+    top: '30%', 
     left: '10%',
     fontSize: 16,
     color: 'white',
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   },
   transactionsImage: {
     width: width - 35,
-    height: (width - 40) * 0.78, // Increased height for more content space
+    height: (width - 40) * 0.78, 
     marginBottom: 10,
   },
   transactionDetails: {
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     width: width - 30,
     marginTop: -100,
     height: undefined,
-    aspectRatio: 3.5, // Adjust aspect ratio as per your image
+    aspectRatio: 3.5,
     alignSelf: 'center',
     marginBottom: 10,
   },
@@ -231,11 +231,11 @@ const styles = StyleSheet.create({
   },
   circleButton: {
     position: 'absolute',
-    top: -35, // Adjust the value to move the button higher or lower
-    left: width / 2 - 35, // Center the button horizontally
-    width: 70, // Slightly bigger
-    height: 70, // Slightly bigger
-    borderRadius: 35, // Adjusted for new size
+    top: -35, 
+    left: width / 2 - 35, 
+    width: 70, 
+    height: 70, 
+    borderRadius: 35, 
     backgroundColor: '#92A3FD',
     justifyContent: 'center',
     alignItems: 'center',
