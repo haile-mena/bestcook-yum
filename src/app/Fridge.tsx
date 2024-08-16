@@ -1,43 +1,144 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
+import React, { ReactNode, useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+} from "react-native";
 import { useRouter } from "expo-router";
-import Svg, { Rect } from 'react-native-svg';
+import Svg, { Rect } from "react-native-svg";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../support/firebase";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 const Fridge = () => {
   const router = useRouter();
-
+  const [inventory, setInventory] = useState<any[]>([]);
+  useEffect(() => {
+    const getInvetory = async () => {
+      try {
+        const inventoryRef = collection(db, "Inventory");
+        const invcentorySnapshot = await getDocs(inventoryRef);
+        const inventorys = invcentorySnapshot.docs;
+        const inventoryList = inventorys.map((inventory) => inventory.data());
+        setInventory(inventoryList);
+      } catch (error) {
+        console.error("Error fetching Inventories: ", error);
+      }
+    };
+    getInvetory();
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Fridge</Text>
       <View style={styles.reminderContainer}>
-        <Svg width={width - 40} height="80" viewBox={`0 0 ${width - 40} 80`} fill="none" style={styles.reminderSvg}>
-          <Rect opacity="0.1" width={width - 40} height="80" rx="20" fill="#FF0000" />
+        <Svg
+          width={width - 40}
+          height="80"
+          viewBox={`0 0 ${width - 40} 80`}
+          fill="none"
+          style={styles.reminderSvg}
+        >
+          <Rect
+            opacity="0.1"
+            width={width - 40}
+            height="80"
+            rx="20"
+            fill="#FF0000"
+          />
         </Svg>
-        <Image source={require('../../assets/images/reminderimage.png')} style={styles.reminderImage} />
+        <Image
+          source={require("../../assets/images/reminderimage.png")}
+          style={styles.reminderImage}
+        />
         <View style={styles.reminderTextContainer}>
           <Text style={styles.reminderText}>Reminder!</Text>
-          <Text style={styles.reminderDetailText}>Heirloom Tomatoes expiring in 3 days.</Text>
-          <Text style={styles.reminderSubText}>View recipes using tomatoes.</Text>
+          <Text style={styles.reminderDetailText}>
+            Heirloom Tomatoes expiring in 3 days.
+          </Text>
+          <Text style={styles.reminderSubText}>
+            View recipes using tomatoes.
+          </Text>
         </View>
         <TouchableOpacity style={styles.closeButton}>
-          <Image source={require('../../assets/images/x-icon.png')} style={styles.closeIcon} />
+          <Image
+            source={require("../../assets/images/x-icon.png")}
+            style={styles.closeIcon}
+          />
         </TouchableOpacity>
       </View>
       <Text style={styles.currentItemsText}>Current Items In Fridge</Text>
+      {inventory.map((invent) =>
+        invent.items.map(
+          (item: {
+            [x: string]: ReactNode;
+            quantity:
+              | string
+              | number
+              | boolean
+              | React.ReactElement<
+                  any,
+                  string | React.JSXElementConstructor<any>
+                >
+              | Iterable<React.ReactNode>
+              | React.ReactPortal
+              | null
+              | undefined;
+            itemName:
+              | string
+              | number
+              | boolean
+              | React.ReactElement<
+                  any,
+                  string | React.JSXElementConstructor<any>
+                >
+              | Iterable<React.ReactNode>
+              | React.ReactPortal
+              | null
+              | undefined;
+          }) => (
+            <Text>
+              {item.quantity} {item.itemName}{" "}
+              <Text>expires in {item.expiryDatenpm}</Text>
+            </Text>
+          )
+        )
+      )}
+
+      <Text>Scan items to add your Fridge</Text>
       <View style={styles.bottomBar}>
         <TouchableOpacity onPress={() => router.navigate("./Home")}>
-          <Image source={require('../../assets/images/Home.png')} style={styles.icon} />
+          <Image
+            source={require("../../assets/images/Home.png")}
+            style={styles.icon}
+          />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => router.navigate("./Swipe")}>
-          <Image source={require('../../assets/images/Activity.png')} style={[styles.icon, { marginRight: 50 }]} />
+          <Image
+            source={require("../../assets/images/Activity.png")}
+            style={[styles.icon, { marginRight: 50 }]}
+          />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.navigate("./Fridge")} style={styles.circleButton}>
-          <Image source={require('../../assets/images/Scan.png')} style={styles.scanIcon} />
+        <TouchableOpacity
+          onPress={() => router.navigate("./Fridge")}
+          style={styles.circleButton}
+        >
+          <Image
+            source={require("../../assets/images/Scan.png")}
+            style={styles.scanIcon}
+          />
         </TouchableOpacity>
-        <Image source={require('../../assets/images/Buy.png')} style={[styles.icon, { marginLeft: 50 }]} />
-        <Image source={require('../../assets/images/Profile.png')} style={styles.icon} />
+        <Image
+          source={require("../../assets/images/Buy.png")}
+          style={[styles.icon, { marginLeft: 50 }]}
+        />
+        <Image
+          source={require("../../assets/images/Profile.png")}
+          style={styles.icon}
+        />
       </View>
     </View>
   );
@@ -57,40 +158,40 @@ const styles = StyleSheet.create({
     marginBottom: 10, // Adjust margin to move the title higher
   },
   reminderContainer: {
-    position: 'relative',
+    position: "relative",
     width: width - 40,
     marginBottom: 30, // Adjust margin to create more space
   },
   reminderSvg: {
-    position: 'absolute',
+    position: "absolute",
   },
   reminderImage: {
-    position: 'absolute',
+    position: "absolute",
     top: 15,
     left: 15,
     width: 50,
     height: 50,
   },
   reminderTextContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 15,
     left: 80,
   },
   reminderText: {
     fontSize: 14,
-    color: '#FF0000',
+    color: "#FF0000",
   },
   reminderDetailText: {
     fontSize: 12,
-    color: '#000',
+    color: "#000",
   },
-   reminderSubText: {
+  reminderSubText: {
     fontSize: 12,
-    color: '#7D7D7D',
-    marginTop: 8, 
+    color: "#7D7D7D",
+    marginTop: 8,
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 15,
     right: 15,
   },
@@ -106,17 +207,17 @@ const styles = StyleSheet.create({
     marginTop: 70, // Adding more margin to separate from the reminder
   },
   bottomBar: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    width: '100%',
+    width: "100%",
     height: 80,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    shadowColor: '#000',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: -2,
@@ -126,16 +227,16 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   circleButton: {
-    position: 'absolute',
-    top: -35, 
-    left: width / 2 - 35, 
+    position: "absolute",
+    top: -35,
+    left: width / 2 - 35,
     width: 70,
-    height: 70, 
-    borderRadius: 35, 
-    backgroundColor: '#92A3FD',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: "#92A3FD",
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 10,
